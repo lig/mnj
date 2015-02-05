@@ -1,0 +1,6 @@
+* use python syntax to build valid queries via operator functions
+* replica set client wrapper
+* implement per query schema validation (not per collection)
+* data embedding support
+* data bucketing support
+* document splitting support
