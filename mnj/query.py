@@ -1,10 +1,9 @@
+from collections import OrderedDict
+
 __all__ = ['q']
 
 
-class Query(dict):
-
-    def __init__(self, *args, **kwargs):
-        dict.__init__(self, *args, **kwargs)
+class Query(OrderedDict):
 
     def __and__(self, other):
         new = self.copy()
