@@ -12,7 +12,7 @@ class Query(dict):
         return new
 
     def __or__(self, other):
-        from .operators import or_
-        return or_(self, other)
+        from .operators import _or
+        return _or(self, other)
 
 q = Query
