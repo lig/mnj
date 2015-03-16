@@ -15,7 +15,8 @@ Untill Mnj release will be available via PyPI clone this repository and invoke i
 
 ## Planned
 * More precise query validation including query structure and data types.
-* Schema validation
+* Schema validation.
+* See [todo.txt](todo.txt) for more.
 
 ## Usage
 Basic usage
