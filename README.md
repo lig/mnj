@@ -19,7 +19,7 @@ Untill Mnj release will be available via PyPI clone this repository and invoke i
 * See [todo.txt](todo.txt) for more.
 
 ## Usage
-Basic usage
+Basic usage. Try yourself via `python -m mnj`.
 
     from mnj.base import MongoClient
     from mnj.operators import *
