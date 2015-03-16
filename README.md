@@ -1,5 +1,7 @@
 # Mnj
-Mnj (Mongo Energy) is a helper library to simplify PyMongo interaction
+![Mnj Logo](https://www.dropbox.com/s/492ke98ciajnd98/logo150.png?dl=1)
+
+**Mnj** (_Mongo Energy_) is a helper library to simplify PyMongo interaction
 
 ## Install
 Untill Mnj release will be available via PyPI clone this repository and invoke install
