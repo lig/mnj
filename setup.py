@@ -23,13 +23,22 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
+PY = sys.version_info.major + sys.version_info.minor * .1
+
+install_requires = [
+    'six',
+    'pymongo',
+]
+if PY < 3.4:
+    install_requires += [
+        'enum34',
+    ]
+
 setup(
     name='mnj',
     version='0.1dev',
     packages=find_packages(),
-    install_requires=[
-        'pymongo',
-    ],
+    install_requires=install_requires,
     tests_require=[
         'pytest',
     ],
