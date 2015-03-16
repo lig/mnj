@@ -1,6 +1,7 @@
 import pytest
 
-from mnj.query import *
+from mnj.operators.logical import _and, _or
+from mnj.query import q
 
 
 def test_query_empty():
@@ -43,10 +44,12 @@ def test_query_from_query():
 
 
 def test_query_and_query():
-    query = q({'a': 1, 'b': 2}) & q({'a': 1, 'c': 3})
-    assert query == {'a': 1, 'b': 2, 'c': 3}
+    q1 = q({'a': 1, 'b': 2})
+    q2 = q({'a': 1, 'c': 3})
+    assert q1 & q2 == _and(q1, q2)
 
 
 def test_query_or_query():
-    query = q({'a': 1, 'b': 2}) | q({'a': 1, 'c': 3})
-    assert query == {'$or': [{'a': 1, 'b': 2}, {'a': 1, 'c': 3}]}
+    q1 = q({'a': 1, 'b': 2})
+    q2 = q({'a': 1, 'c': 3})
+    assert q1 | q2 == _or(q1, q2)

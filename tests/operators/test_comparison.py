@@ -1,7 +1,5 @@
-import pytest
-
+from mnj.operators.comparison import _gt, _gte, _in, _lt, _lte, _ne, _nin
 from mnj.query import q
-from mnj.operators import *
 
 
 def test_gt():
