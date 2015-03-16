@@ -13,8 +13,8 @@ def test_nor():
 
 
 def test_not():
-    query = q(a=_not(1))
-    assert query == {'a': {'$not': 1}}
+    query = q(_not({'a': 1}))
+    assert query == {'$not': {'a': 1}}
 
 
 def test_or():

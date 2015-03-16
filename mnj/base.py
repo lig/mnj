@@ -1,7 +1,13 @@
 import pymongo
 
+from .query import Doc  # @UnusedImport
+
 
 class MongoClient(pymongo.MongoClient):
+
+    def __init__(self, *args, document_class=Doc, **kwargs):
+        pymongo.MongoClient.__init__(
+            self, *args, document_class=document_class, **kwargs)
 
     def __getattr__(self, name):
         """Get a database by name.

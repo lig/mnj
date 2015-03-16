@@ -1,9 +1,17 @@
 from collections import OrderedDict
 
-__all__ = ['q']
+__all__ = ['Doc', 'q']
 
 
-class Query(OrderedDict):
+class Doc(OrderedDict):
+    def __str__(self):
+        return (
+            '{' +
+            ', '.join(['{}: {}'.format(k, v) for k, v in self.items()]) +
+            '}')
+
+
+class Query(Doc):
 
     def __and__(self, other):
         from .operators import _and

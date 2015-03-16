@@ -11,10 +11,10 @@ def _nor(*queries):
     return q({'$nor': [q(query) for query in queries]})
 
 
-def _not(operator):
+def _not(query):
     """TODO: check for supported $not arguments
     """
-    return q({'$not': operator})
+    return q({'$not': q(query)})
 
 
 def _or(*queries):
