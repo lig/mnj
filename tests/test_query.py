@@ -53,3 +53,8 @@ def test_query_or_query():
     q1 = q({'a': 1, 'b': 2})
     q2 = q({'a': 1, 'c': 3})
     assert q1 | q2 == _or(q1, q2)
+
+
+def test_query_from_query_arguments():
+    query = q(q({'a': 1}), q({'b': 2}))
+    assert query == {'a': 1, 'b': 2}

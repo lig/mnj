@@ -13,6 +13,16 @@ class Doc(OrderedDict):
 
 class Query(Doc):
 
+    def __init__(self, *args, **kwargs):
+
+        if len(args) > 1:
+            query = q()
+            for arg in args:
+                query.update(arg)
+            args = [query]
+
+        Doc.__init__(self, *args, **kwargs)
+
     def __and__(self, other):
         from .operators import _and
         return _and(self, other)
