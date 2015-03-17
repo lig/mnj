@@ -36,7 +36,7 @@ if PY < 3.4:
 
 setup(
     name='mnj',
-    version='0.1.1dev',
+    version='0.1.2dev',
     packages=find_packages(),
     install_requires=install_requires,
     tests_require=[
@@ -48,5 +48,6 @@ setup(
     description=(
         'Mnj (Mongo Energy) is a helper library to simplify PyMongo'
         ' interaction'),
+    url='https://github.com/lig/mnj',
     license='BSD',
 )
