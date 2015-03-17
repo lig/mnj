@@ -4,7 +4,11 @@
 **Mnj** (_Mongo Energy_) is a helper library to simplify PyMongo interaction
 
 ## Install
-Untill Mnj release will be available via PyPI clone this repository and invoke install
+Untill Mnj release will be available via PyPI you may get somewhat ready to use snapshot via
+
+    pip install --pre mnj
+
+or clone this repository to get the latest source and invoke install
 
     python setup.py install
 
