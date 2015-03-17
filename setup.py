@@ -36,7 +36,7 @@ if PY < 3.4:
 
 setup(
     name='mnj',
-    version='0.1.2dev',
+    version='0.1.3dev',
     packages=find_packages(),
     install_requires=install_requires,
     tests_require=[
