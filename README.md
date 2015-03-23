@@ -1,6 +1,7 @@
+[![Join the chat at https://gitter.im/lig/mnj](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lig/mnj?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 # Mnj
 
-[![Join the chat at https://gitter.im/lig/mnj](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lig/mnj?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ![Mnj Logo](https://www.dropbox.com/s/492ke98ciajnd98/logo150.png?dl=1)
 
 **Mnj** (_Mongo Energy_) is a helper library to simplify PyMongo interaction
