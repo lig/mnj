@@ -1,14 +1,7 @@
-from collections import OrderedDict
-
-__all__ = ['Doc', 'q']
+from .base import Doc
 
 
-class Doc(OrderedDict):
-    def __str__(self):
-        return (
-            '{' +
-            ', '.join(['{}: {}'.format(k, v) for k, v in self.items()]) +
-            '}')
+__all__ = ['q']
 
 
 class Query(Doc):
