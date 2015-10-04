@@ -1,21 +1,22 @@
 from ..query import q
 
-__all__ = ['_and', '_nor', '_not', '_or']
+
+__all__ = ['and_', 'nor_', 'not_', 'or_']
 
 
-def _and(*queries):
+def and_(*queries):
     return q({'$and': [q(query) for query in queries]})
 
 
-def _nor(*queries):
+def nor_(*queries):
     return q({'$nor': [q(query) for query in queries]})
 
 
-def _not(query):
+def not_(query):
     """TODO: check for supported $not arguments
     """
     return q({'$not': q(query)})
 
 
-def _or(*queries):
+def or_(*queries):
     return q({'$or': [q(query) for query in queries]})

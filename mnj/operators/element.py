@@ -4,14 +4,14 @@ from ..query import q
 from ..types import BSONType
 
 
-__all__ = ['_exists', '_type']
+__all__ = ['exists_', 'type_']
 
 
-def _exists(value):
+def exists_(value):
     return q({'$exists': bool(value)})
 
 
-def _type(value):
+def type_(value):
     if isinstance(value, BSONType):
         value = value.value
     elif isinstance(value, string_types):

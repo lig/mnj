@@ -1,10 +1,7 @@
 from collections import OrderedDict
 
 
-__all__ = []
-
-
-class Doc(OrderedDict):
+class BaseDoc(OrderedDict):
 
     def __str__(self):
         return (
