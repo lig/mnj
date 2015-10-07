@@ -1,7 +1,7 @@
 from six import string_types
 
-from ..query import q
-from ..types import BSONType
+from mnj.query import q
+from mnj.types import BSONType
 
 
 __all__ = ['exists_', 'type_']

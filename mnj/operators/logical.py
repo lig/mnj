@@ -1,4 +1,4 @@
-from ..query import q
+from mnj.query import q
 
 
 __all__ = ['and_', 'nor_', 'not_', 'or_']
