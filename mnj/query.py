@@ -1,4 +1,4 @@
-from .base import BaseDoc
+from mnj.base import BaseDoc
 
 
 __all__ = ['q']

@@ -2,7 +2,7 @@ from collections import OrderedDict
 
 from six import with_metaclass
 
-from .base import BaseDoc, SortedDict
+from mnj.base import BaseDoc, SortedDict
 
 
 __all__ = ['d']
