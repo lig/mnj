@@ -47,7 +47,7 @@ class DocMeta(type):
                 bases.append(MagicMixin)
             attrs['_cls'] = meta['class_name']
             type_new = type.__new__(cls, name, tuple(bases), attrs)
-            doc_registry.register_doc(type_new)
+            doc_registry.register_class(type_new)
             return type_new
         else:
             return type.__new__(cls, name, tuple(bases), attrs)
