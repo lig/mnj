@@ -1,5 +1,6 @@
-from mnj import *
 from pymongo import MongoClient
+
+from mnj import *
 
 
 db = MongoClient(document_class=d)['test']

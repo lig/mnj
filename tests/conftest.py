@@ -1,5 +1,7 @@
 import pytest
 
+from mnj.doc_registry import DocRegistry, doc_registry
+
 
 @pytest.fixture(scope='session')
 def mongo_client():
@@ -23,3 +25,10 @@ def data(database):
     data.insert({'a': 3, 'b': 4})
     data.insert({'a': 5, 'b': 6})
     yield data
+
+
+@pytest.yield_fixture
+def doc_registry():
+    DocRegistry._registry = {}
+    yield doc_registry
+    DocRegistry._registry = {}

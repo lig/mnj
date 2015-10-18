@@ -23,13 +23,15 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
-PY = sys.version_info.major + sys.version_info.minor * .1
-
 install_requires = [
     'six',
     'pymongo',
 ]
-if PY < 3.4:
+if sys.version_info.major < 3:
+    install_requires += [
+        'chainmap',
+    ]
+if sys.version_info[:2] < (3, 4):
     install_requires += [
         'enum34',
     ]
