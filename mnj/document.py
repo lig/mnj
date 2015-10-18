@@ -23,7 +23,6 @@ class DocMeta(type):
             else:
                 bases.append(SortedDict)
 
-        print(bases)
         return type.__new__(cls, name, tuple(bases), attrs)
 
 
