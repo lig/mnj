@@ -18,7 +18,7 @@ or clone this repository to get the latest source and invoke install
 ## Features
 * Using `mnj.MongoClient` will set `OrderedDict` instead of `dict` as document class by default.
 * Using `mnj.q` object for constructing queries will help to validate them.
-* No creepy `'$op'` strings any more use `_op()` from `mnj.operators`.
+* No creepy `'$op'` strings any more use `op_()` from `mnj.operators`.
 
 ## Planned
 * More precise query validation including query structure and data types.
@@ -28,39 +28,53 @@ or clone this repository to get the latest source and invoke install
 ## Usage
 Basic usage. Try yourself via `python -m mnj`.
 
-    from mnj.base import MongoClient
-    from mnj.operators import *
-    from mnj.query import q, Doc
+    from mnj import *
+    from pymongo import MongoClient
     
     
-    db = MongoClient()['test']
+    db = MongoClient(document_class=d)['test']
     db.docs.drop()
-    db.docs.insert(Doc([('a', 1), ('b', 1)]))
-    db.docs.insert(Doc([('a', 2), ('b', 2)]))
-    db.docs.insert(Doc([('a', 3), ('b', 3)]))
-    db.docs.insert(Doc([('a', 1), ('b', 4)]))
-    db.docs.insert(Doc([('a', 2), ('b', 5)]))
-    db.docs.insert(Doc([('a', 3), ('b', 6)]))
+    db.docs.insert(d([('a', 1), ('b', 1)]))
+    db.docs.insert(d([('a', 2), ('b', 2)]))
+    db.docs.insert(d([('a', 3), ('b', 3)]))
+    db.docs.insert(d([('a', 1), ('b', 4)]))
+    db.docs.insert(d([('a', 2), ('b', 5)]))
+    db.docs.insert(d([('a', 3), ('b', 6)]))
     
     # {'a': 1, 'b': 1}
     # {'a': 1, 'b': 4}
-    db.docs.find(q(a=1))
+    for doc in db.docs.find(q(a=1)):
+        del doc['_id']
+        print(doc)
+    print()
     
     # {'a': 1, 'b': 1}
     # {'a': 3, 'b': 3}
     # {'a': 1, 'b': 4}
     # {'a': 3, 'b': 6}
-    db.docs.find(q(a=_ne(2)))
-
+    for doc in db.docs.find(q(a=ne_(2))):
+        del doc['_id']
+        print(doc)
+    print()
+    
     # {'a': 1, 'b': 4}
     # {'a': 2, 'b': 5}
     # {'a': 3, 'b': 6}
-    for doc in db.docs.find(q(b=_gt(3)))
-
+    for doc in db.docs.find(q(b=gt_(3))):
+        del doc['_id']
+        print(doc)
+    print()
+    
     # {'a': 2, 'b': 2}
     # {'a': 3, 'b': 3}
     # {'a': 3, 'b': 6}
-    for doc in db.docs.find(q(a=3) | q(b=2))
-
+    for doc in db.docs.find(q(a=3) | q(b=2)):
+        del doc['_id']
+        print(doc)
+    print()
+    
     # {'a': 1, 'b': 4}
-    for doc in db.docs.find(_and(q(a=1), q(b=4)))
+    for doc in db.docs.find(and_(q(a=1), q(b=4))):
+        del doc['_id']
+        print(doc)
+    print()

@@ -1,17 +1,10 @@
-from collections import OrderedDict
-
-__all__ = ['Doc', 'q']
+from mnj.base import BaseDoc
 
 
-class Doc(OrderedDict):
-    def __str__(self):
-        return (
-            '{' +
-            ', '.join(['{}: {}'.format(k, v) for k, v in self.items()]) +
-            '}')
+__all__ = ['q']
 
 
-class Query(Doc):
+class Query(BaseDoc):
 
     def __init__(self, *args, **kwargs):
 
@@ -21,14 +14,14 @@ class Query(Doc):
                 query.update(arg)
             args = [query]
 
-        Doc.__init__(self, *args, **kwargs)
+        BaseDoc.__init__(self, *args, **kwargs)
 
     def __and__(self, other):
-        from .operators import _and
-        return _and(self, other)
+        from .operators import and_
+        return and_(self, other)
 
     def __or__(self, other):
-        from .operators import _or
-        return _or(self, other)
+        from .operators import or_
+        return or_(self, other)
 
 q = Query

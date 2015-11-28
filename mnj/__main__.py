@@ -1,17 +1,16 @@
-from mnj.base import MongoClient
-from mnj.operators.comparison import _gt, _ne
-from mnj.operators.logical import _and
-from mnj.query import q, Doc
+from pymongo import MongoClient
+
+from mnj import *
 
 
-db = MongoClient()['test']
+db = MongoClient(document_class=d)['test']
 db.docs.drop()
-db.docs.insert(Doc([('a', 1), ('b', 1)]))
-db.docs.insert(Doc([('a', 2), ('b', 2)]))
-db.docs.insert(Doc([('a', 3), ('b', 3)]))
-db.docs.insert(Doc([('a', 1), ('b', 4)]))
-db.docs.insert(Doc([('a', 2), ('b', 5)]))
-db.docs.insert(Doc([('a', 3), ('b', 6)]))
+db.docs.insert(d([('a', 1), ('b', 1)]))
+db.docs.insert(d([('a', 2), ('b', 2)]))
+db.docs.insert(d([('a', 3), ('b', 3)]))
+db.docs.insert(d([('a', 1), ('b', 4)]))
+db.docs.insert(d([('a', 2), ('b', 5)]))
+db.docs.insert(d([('a', 3), ('b', 6)]))
 
 # {'a': 1, 'b': 1}
 # {'a': 1, 'b': 4}
@@ -24,7 +23,7 @@ print()
 # {'a': 3, 'b': 3}
 # {'a': 1, 'b': 4}
 # {'a': 3, 'b': 6}
-for doc in db.docs.find(q(a=_ne(2))):
+for doc in db.docs.find(q(a=ne_(2))):
     del doc['_id']
     print(doc)
 print()
@@ -32,7 +31,7 @@ print()
 # {'a': 1, 'b': 4}
 # {'a': 2, 'b': 5}
 # {'a': 3, 'b': 6}
-for doc in db.docs.find(q(b=_gt(3))):
+for doc in db.docs.find(q(b=gt_(3))):
     del doc['_id']
     print(doc)
 print()
@@ -46,7 +45,7 @@ for doc in db.docs.find(q(a=3) | q(b=2)):
 print()
 
 # {'a': 1, 'b': 4}
-for doc in db.docs.find(_and(q(a=1), q(b=4))):
+for doc in db.docs.find(and_(q(a=1), q(b=4))):
     del doc['_id']
     print(doc)
 print()

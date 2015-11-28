@@ -1,29 +1,29 @@
-__all__ = ['_gt', '_gte', '_in', '_lt', '_lte', '_ne', '_nin']
+__all__ = ['gt_', 'gte_', 'in_', 'lt_', 'lte_', 'ne_', 'nin_']
 
 
-def _gt(value):
+def gt_(value):
     return {'$gt': value}
 
 
-def _gte(value):
+def gte_(value):
     return {'$gte': value}
 
 
-def _in(*values):
+def in_(*values):
     return {'$in': values}
 
 
-def _lt(value):
+def lt_(value):
     return {'$lt': value}
 
 
-def _lte(value):
+def lte_(value):
     return {'$lte': value}
 
 
-def _ne(value):
+def ne_(value):
     return {'$ne': value}
 
 
-def _nin(*values):
+def nin_(*values):
     return {'$nin': values}
