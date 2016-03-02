@@ -5,7 +5,8 @@ python:
   - "3.5"
 install:
   - python setup.py -q install
-  - pip install -q pytest
-script: py.test
+  - pip install -q pytest pytest-cov coveralls
+script: py.test --cov=mnj
 services:
   - mongodb
+after_success: coveralls
