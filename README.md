@@ -1,5 +1,6 @@
 [![Join the chat at https://gitter.im/lig/mnj](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/lig/mnj?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/lig/mnj.svg?branch=develop)](https://travis-ci.org/lig/mnj)
+[![Coverage Status](https://coveralls.io/repos/github/lig/mnj/badge.svg?branch=develop)](https://coveralls.io/github/lig/mnj?branch=develop)
 
 # Mnj
 
