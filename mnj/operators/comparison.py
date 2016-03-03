@@ -1,29 +1,30 @@
+from mnj.operators.base import Operator, Arity
 __all__ = ['gt_', 'gte_', 'in_', 'lt_', 'lte_', 'ne_', 'nin_']
 
 
-def gt_(value):
-    return {'$gt': value}
+class gt_(Operator):
+    pass
 
 
-def gte_(value):
-    return {'$gte': value}
+class gte_(Operator):
+    pass
 
 
-def in_(*values):
-    return {'$in': values}
+class in_(Operator):
+    arity = Arity.many
 
 
-def lt_(value):
-    return {'$lt': value}
+class lt_(Operator):
+    pass
 
 
-def lte_(value):
-    return {'$lte': value}
+class lte_(Operator):
+    pass
 
 
-def ne_(value):
-    return {'$ne': value}
+class ne_(Operator):
+    pass
 
 
-def nin_(*values):
-    return {'$nin': values}
+class nin_(Operator):
+    arity = Arity.many

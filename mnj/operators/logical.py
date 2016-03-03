@@ -1,22 +1,30 @@
+from mnj.operators.base import Operator, Arity
 from mnj.query import q
 
 
 __all__ = ['and_', 'nor_', 'not_', 'or_']
 
 
-def and_(*queries):
-    return q({'$and': [q(query) for query in queries]})
+class _binary(Operator):
+    arity = Arity.many
+
+    def prepare(self, value):
+        return [q(query) for query in value]
 
 
-def nor_(*queries):
-    return q({'$nor': [q(query) for query in queries]})
+class and_(_binary):
+    pass
 
 
-def not_(query):
-    """TODO: check for supported $not arguments
-    """
-    return q({'$not': q(query)})
+class nor_(_binary):
+    pass
 
 
-def or_(*queries):
-    return q({'$or': [q(query) for query in queries]})
+class not_(Operator):
+
+    def prepare(self, value):
+        return q(value)
+
+
+class or_(_binary):
+    pass

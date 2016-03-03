@@ -1,14 +1,14 @@
-class BaseMnjException(BaseException):
+class BaseMnjError(BaseException):
     pass
 
 
-class BaseDocRegistryException(BaseMnjException):
+class BaseDocRegistryError(BaseMnjError):
     pass
 
 
-class ClassAlreadyRegisteredError(BaseDocRegistryException):
+class ClassAlreadyRegisteredError(BaseDocRegistryError):
     pass
 
 
-class ClassIsNotRegistered(BaseDocRegistryException):
+class ClassIsNotRegisteredError(BaseDocRegistryError):
     pass
