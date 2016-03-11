@@ -1,10 +1,6 @@
-from __future__ import print_function
+import six
 
-from collections import OrderedDict
-
-from six import with_metaclass
-
-from mnj.base import BaseDoc, SortedDict
+from mnj.base import BaseDoc
 from mnj.compat import ChainMap
 from mnj.doc_registry import doc_registry
 
@@ -15,7 +11,6 @@ __all__ = ['d']
 class DocMeta(type):
 
     meta_defaults = {
-        'sorted': False,
         'magic': False,
         'class_name': None,  # actual class name is used by default
     }
@@ -31,13 +26,6 @@ class DocMeta(type):
 
         # prepare bases for modification
         bases = list(bases)
-
-        # is sorted
-        if meta['sorted']:
-            if OrderedDict in bases:
-                bases[bases.index(OrderedDict)] = SortedDict
-            else:
-                bases.append(SortedDict)
 
         # is magic (keep this section last)
         if meta['magic']:
@@ -61,7 +49,8 @@ class MagicMixin(object):
         return super(MagicMixin, self).__init__(*args, **kwargs)
 
 
-class Doc(with_metaclass(DocMeta, BaseDoc)):
+@six.add_metaclass(DocMeta)
+class Doc(BaseDoc):
     pass
 
 

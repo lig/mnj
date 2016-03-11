@@ -1,19 +1,23 @@
 from six import string_types
 
-from mnj.query import q
+from mnj.operators.base import Operator
 from mnj.types import BSONType
 
 
 __all__ = ['exists_', 'type_']
 
 
-def exists_(value):
-    return q({'$exists': bool(value)})
+class exists_(Operator):
+
+    def prepare(self, value):
+        return bool(value)
 
 
-def type_(value):
-    if isinstance(value, BSONType):
-        value = value.value
-    elif isinstance(value, string_types):
-        value = BSONType[value].value
-    return q({'$type': int(value)})
+class type_(Operator):
+
+    def prepare(self, value):
+        if isinstance(value, BSONType):
+            value = value.value
+        elif isinstance(value, string_types):
+            value = BSONType[value].value
+        return value
