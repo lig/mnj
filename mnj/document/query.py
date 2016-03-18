@@ -1,4 +1,4 @@
-from mnj.base import BaseDoc
+from mnj.document.base import BaseDoc
 
 
 __all__ = ['q']
@@ -17,11 +17,11 @@ class Query(BaseDoc):
         BaseDoc.__init__(self, *args, **kwargs)
 
     def __and__(self, other):
-        from .operators import and_
+        from mnj import and_
         return and_(self, other)
 
     def __or__(self, other):
-        from .operators import or_
+        from mnj import or_
         return or_(self, other)
 
 q = Query

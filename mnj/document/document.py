@@ -1,8 +1,8 @@
 import six
 
-from mnj.base import BaseDoc
 from mnj.compat import ChainMap
-from mnj.doc_registry import doc_registry
+from mnj.document.base import BaseDoc
+from mnj.document.registry import registry
 
 
 __all__ = ['d']
@@ -35,7 +35,7 @@ class DocMeta(type):
                 bases.append(MagicMixin)
             attrs['_cls'] = meta['class_name']
             type_new = type.__new__(cls, name, tuple(bases), attrs)
-            doc_registry.register_class(type_new)
+            registry.register_class(type_new)
             return type_new
         else:
             return type.__new__(cls, name, tuple(bases), attrs)

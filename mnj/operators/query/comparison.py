@@ -1,4 +1,6 @@
 from mnj.operators.base import Operator, Arity
+
+
 __all__ = ['gt_', 'gte_', 'in_', 'lt_', 'lte_', 'ne_', 'nin_']
 
 

@@ -1,11 +1,10 @@
-from mnj.exceptions import ClassAlreadyRegisteredError,\
-    ClassIsNotRegisteredError
+from .exceptions import ClassAlreadyRegisteredError, ClassIsNotRegisteredError
 
 
-__all__ = ['doc_registry']
+__all__ = ['registry']
 
 
-class DocRegistry(object):
+class Registry(object):
     _registry = {}
 
     def register_class(self, doc_class):
@@ -25,4 +24,4 @@ class DocRegistry(object):
 
         return self._registry[class_name]
 
-doc_registry = DocRegistry()
+registry = Registry()

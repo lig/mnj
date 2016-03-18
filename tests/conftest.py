@@ -27,7 +27,7 @@ def data(database):
 
 @pytest.yield_fixture
 def doc_registry():
-    from mnj.doc_registry import DocRegistry, doc_registry
-    DocRegistry._registry = {}
-    yield doc_registry
-    DocRegistry._registry = {}
+    from mnj.document.registry import Registry, registry
+    Registry._registry = {}
+    yield registry
+    Registry._registry = {}

@@ -2,9 +2,9 @@ import enum
 
 import six
 
-from mnj.query import q
-from mnj.operators.exceptions import MnjOperatorDefinitionError,\
-    MnjOperatorError
+from mnj.document.query import Query
+
+from .exceptions import MnjOperatorDefinitionError, MnjOperatorError
 
 
 @enum.unique
@@ -29,7 +29,7 @@ class OperatorMeta(type):
 
 
 @six.add_metaclass(OperatorMeta)
-class Operator(q):
+class Operator(Query):
     """Base class for MongoDB operators definitions.
     :param Arity arity: The arity of the operator. Defaults to `Arity.one`.
     """
@@ -41,7 +41,7 @@ class Operator(q):
                 raise MnjOperatorError(
                     '`{}` operator takes exactly one argument.')
             value = value[0]
-        q.__init__(self, [(self.Sname, self.prepare(value))])
+        Query.__init__(self, [(self.Sname, self.prepare(value))])
 
     def prepare(self, value):
         return value

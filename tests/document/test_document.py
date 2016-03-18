@@ -1,7 +1,7 @@
 import pytest
 
 from mnj import *
-from mnj.document import Doc
+from mnj.document.document import Doc
 
 
 def test_mongo_client_uses_mnj_doc(data):
