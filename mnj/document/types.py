@@ -1,7 +1,8 @@
-from enum import Enum
+import enum
 
 
-class BSONType(Enum):
+@enum.unique
+class BSONType(enum.Enum):
     Double = 1
     String = 2
     Object = 3
