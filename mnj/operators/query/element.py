@@ -1,19 +1,19 @@
 from six import string_types
 
 from mnj.document.types import BSONType
-from mnj.operators.base import Operator
+from mnj.operators.base import UnaryOperator
 
 
 __all__ = ['exists_', 'type_']
 
 
-class exists_(Operator):
+class exists_(UnaryOperator):
 
     def prepare(self, value):
         return bool(value)
 
 
-class type_(Operator):
+class type_(UnaryOperator):
 
     def prepare(self, value):
         if isinstance(value, BSONType):

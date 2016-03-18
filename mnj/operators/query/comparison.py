@@ -1,32 +1,32 @@
-from mnj.operators.base import Operator, Arity
+from mnj.operators.base import Operator, UnaryOperator
 
 
 __all__ = ['gt_', 'gte_', 'in_', 'lt_', 'lte_', 'ne_', 'nin_']
 
 
-class gt_(Operator):
+class gt_(UnaryOperator):
     pass
 
 
-class gte_(Operator):
+class gte_(UnaryOperator):
     pass
 
 
 class in_(Operator):
-    arity = Arity.many
-
-
-class lt_(Operator):
     pass
 
 
-class lte_(Operator):
+class lt_(UnaryOperator):
     pass
 
 
-class ne_(Operator):
+class lte_(UnaryOperator):
+    pass
+
+
+class ne_(UnaryOperator):
     pass
 
 
 class nin_(Operator):
-    arity = Arity.many
+    pass

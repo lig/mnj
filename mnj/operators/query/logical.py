@@ -1,15 +1,14 @@
 from mnj.document.query import Query
-from mnj.operators.base import Operator, Arity
+from mnj.operators.base import Operator, UnaryOperator
 
 
 __all__ = ['and_', 'nor_', 'not_', 'or_']
 
 
 class _binary(Operator):
-    arity = Arity.many
 
-    def prepare(self, value):
-        return [Query(query) for query in value]
+    def prepare(self, *values):
+        return [Query(query) for query in values]
 
 
 class and_(_binary):
@@ -20,7 +19,7 @@ class nor_(_binary):
     pass
 
 
-class not_(Operator):
+class not_(UnaryOperator):
 
     def prepare(self, value):
         return Query(value)
