@@ -5,3 +5,4 @@
 *.egg-info
 
 !/.travis.yml
+!/.landscape.yml
