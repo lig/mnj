@@ -1,7 +1,6 @@
-from mnj import document, operators, query
-from mnj.document import *
-from mnj.operators import *
-from mnj.query import *
+from . import document, operators
+from .document import *
+from .operators import *
 
 
-__all__ = document.__all__ + operators.__all__ + query.__all__
+__all__ = document.__all__ + operators.__all__

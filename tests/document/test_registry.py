@@ -1,7 +1,7 @@
 import pytest
 
-from mnj.document import Doc
-from mnj.exceptions import ClassAlreadyRegisteredError
+from mnj.document.document import Doc
+from mnj.document.exceptions import ClassAlreadyRegisteredError
 
 
 def test_single_name_restriction(doc_registry):

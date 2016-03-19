@@ -1,10 +1,10 @@
-from mnj.exceptions import ClassAlreadyRegisteredError, ClassIsNotRegistered
+from .exceptions import ClassAlreadyRegisteredError, ClassIsNotRegisteredError
 
 
-__all__ = ['doc_registry']
+__all__ = ['registry']
 
 
-class DocRegistry(object):
+class Registry(object):
     _registry = {}
 
     def register_class(self, doc_class):
@@ -19,9 +19,9 @@ class DocRegistry(object):
     def get_class(self, class_name):
 
         if class_name not in self._registry:
-            raise ClassIsNotRegistered(
+            raise ClassIsNotRegisteredError(
                 'Class %s is not registered', class_name)
 
         return self._registry[class_name]
 
-doc_registry = DocRegistry()
+registry = Registry()
