@@ -18,14 +18,8 @@ or clone this repository to get the latest source and invoke install
     python setup.py install
 
 ## Features
-* Using `mnj.MongoClient` will set `OrderedDict` instead of `dict` as document class by default.
 * Using `mnj.q` object for constructing queries will help to validate them.
-* No creepy `'$op'` strings any more use `op_()` from `mnj.operators`.
-
-## Planned
-* More precise query validation including query structure and data types.
-* Schema validation.
-* See [todo.txt](todo.txt) for more.
+* No creepy `'$op'` strings any more use `op_()` style operators.
 
 ## Usage
 Basic usage. Try yourself via `python -m mnj`.
