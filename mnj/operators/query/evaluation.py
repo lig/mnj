@@ -3,8 +3,11 @@ import re
 from bson import regex as bson_regex
 import six
 
-from mnj import d
+from mnj.document.document import Doc
 from mnj.operators.base import Operator, UnaryOperator
+
+
+__all__ = ['mod_', 'regex_', 'text_', 'where_']
 
 
 class mod_(Operator):
@@ -46,7 +49,7 @@ class text_(Operator):
             self, search, language, caseSensitive, diacriticSensitive)
 
     def prepare(self, search, language, caseSensitive, diacriticSensitive):
-        value = d()
+        value = Doc()
         value['$search'] = search
         if language is not None:
             value['$language'] = language
