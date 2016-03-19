@@ -1,1 +1,4 @@
-from .chainmap import ChainMap
+try:
+    from collections import ChainMap
+except ImportError:
+    from chainmap import ChainMap
