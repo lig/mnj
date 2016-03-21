@@ -11,10 +11,10 @@ def test_all():
 
 def test_elem_match():
     query = elem_match_(q(gte_(80), lt_(85)))
-    assert query == {'$elem_match': {'$gte': 80, '$lt': 85}}
+    assert query == {'$elemMatch': {'$gte': 80, '$lt': 85}}
 
     query = elem_match_({'$gte': 80, '$lt': 85})
-    assert query == {'$elem_match': {'$gte': 80, '$lt': 85}}
+    assert query == {'$elemMatch': {'$gte': 80, '$lt': 85}}
 
 
 def test_size():

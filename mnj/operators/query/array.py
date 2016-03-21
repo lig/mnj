@@ -24,8 +24,11 @@ class elem_match_(UnaryOperator):
 class size_(UnaryOperator):
 
     def __init__(self, size):
+        UnaryOperator.__init__(self, size)
 
-        if not isinstance(size, int):
+    def prepare(self, value):
+
+        if not isinstance(value, int):
             raise MnjOperatorError('`size` must be integer')
 
-        UnaryOperator.__init__(self, size)
+        return UnaryOperator.prepare(self, value)
