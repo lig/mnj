@@ -19,9 +19,12 @@ def database(mongo_client):
 def data(database):
     data = database.data
     data.drop()
-    data.insert({'a': 1, 'b': 2})
-    data.insert({'a': 3, 'b': 4})
-    data.insert({'a': 5, 'b': 6})
+    data.insert({'_id': '11', 'a': 1, 'b': 1})
+    data.insert({'_id': '22', 'a': 2, 'b': 2})
+    data.insert({'_id': '33', 'a': 3, 'b': 3})
+    data.insert({'_id': '14', 'a': 1, 'b': 4})
+    data.insert({'_id': '25', 'a': 2, 'b': 5})
+    data.insert({'_id': '36', 'a': 3, 'b': 6})
     yield data
 
 
