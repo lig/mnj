@@ -38,7 +38,7 @@ if sys.version_info[:2] < (3, 4):
 
 setup(
     name='mnj',
-    version='0.2dev1',
+    version='0.2',
     packages=find_packages(),
     install_requires=install_requires,
     tests_require=[
