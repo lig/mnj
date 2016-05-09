@@ -5,7 +5,7 @@
    copying
    todo
 
-"Mongo Energy" - Simple yet Powerful Python MongoDB Library and ODM
+Mongo Energy - Simple yet Powerful Python MongoDB Library and ODM
 ===================================================================
 
 Mnj (Mongo Energy) is a Python library for working with `MongoDB <https://www.mongodb.com/>`_ in the most *pythonic* way possible.
