@@ -1,0 +1,32 @@
+
+module mypol 1.0;
+
+require {
+	type locale_t;
+	type user_home_t;
+	type proc_net_t;
+	type ld_so_cache_t;
+	type mongod_var_lib_t;
+	type user_home_dir_t;
+	type mongod_t;
+	class file { write execute read };
+	class dir { search getattr };
+}
+
+#============= mongod_t ==============
+
+#!!!! This avc is allowed in the current policy
+allow mongod_t ld_so_cache_t:file execute;
+
+#!!!! This avc is allowed in the current policy
+allow mongod_t locale_t:file execute;
+allow mongod_t mongod_var_lib_t:file execute;
+
+#!!!! This avc is allowed in the current policy
+allow mongod_t proc_net_t:file read;
+
+#!!!! This avc is allowed in the current policy
+allow mongod_t user_home_dir_t:dir { search getattr };
+
+#!!!! This avc is allowed in the current policy
+allow mongod_t user_home_t:file { write read };
