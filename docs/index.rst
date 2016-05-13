@@ -1,12 +1,13 @@
 .. toctree::
    :hidden:
 
+   examples
    contribute
    copying
    todo
 
 Mongo Energy - Simple yet Powerful Python MongoDB Library and ODM
-===================================================================
+=================================================================
 
 Mnj (Mongo Energy) is a Python library for working with `MongoDB <https://www.mongodb.com/>`_ in the most *pythonic* way possible.
 
@@ -30,6 +31,8 @@ Mnj DSL is handy
     ))
 
 Mnj DSL can be used with any Python MongoDB driver if it is PyMongo compatible, including `Motor <https://github.com/mongodb/motor>`_ and `txmongo <https://github.com/twisted/txmongo>`_.
+
+Still not convinced?☺ See :doc:`examples`.
 
 
 Get Mnj
