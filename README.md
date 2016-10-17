@@ -10,9 +10,9 @@
 **Mnj** (_Mongo Energy_) is a helper library to simplify PyMongo interaction
 
 ## Install
-Untill Mnj release will be available via PyPI you may get somewhat ready to use snapshot via
+Install from PyPI
 
-    pip install --pre mnj
+    pip install mnj
 
 or clone this repository to get the latest source and invoke install
 
@@ -22,57 +22,4 @@ or clone this repository to get the latest source and invoke install
 * Using `mnj.q` object for constructing queries will help to validate them.
 * No creepy `'$op'` strings any more use `op_()` style operators.
 
-## Usage
-Basic usage. Try yourself via `python -m mnj`.
-```python
-    from mnj import *
-    from pymongo import MongoClient
-
-
-    db = MongoClient(document_class=d)['test']
-    db.docs.drop()
-    db.docs.insert(d([('a', 1), ('b', 1)]))
-    db.docs.insert(d([('a', 2), ('b', 2)]))
-    db.docs.insert(d([('a', 3), ('b', 3)]))
-    db.docs.insert(d([('a', 1), ('b', 4)]))
-    db.docs.insert(d([('a', 2), ('b', 5)]))
-    db.docs.insert(d([('a', 3), ('b', 6)]))
-
-    # {'a': 1, 'b': 1}
-    # {'a': 1, 'b': 4}
-    for doc in db.docs.find(q(a=1)):
-        del doc['_id']
-        print(doc)
-    print()
-
-    # {'a': 1, 'b': 1}
-    # {'a': 3, 'b': 3}
-    # {'a': 1, 'b': 4}
-    # {'a': 3, 'b': 6}
-    for doc in db.docs.find(q(a=ne_(2))):
-        del doc['_id']
-        print(doc)
-    print()
-
-    # {'a': 1, 'b': 4}
-    # {'a': 2, 'b': 5}
-    # {'a': 3, 'b': 6}
-    for doc in db.docs.find(q(b=gt_(3))):
-        del doc['_id']
-        print(doc)
-    print()
-
-    # {'a': 2, 'b': 2}
-    # {'a': 3, 'b': 3}
-    # {'a': 3, 'b': 6}
-    for doc in db.docs.find(q(a=3) | q(b=2)):
-        del doc['_id']
-        print(doc)
-    print()
-
-    # {'a': 1, 'b': 4}
-    for doc in db.docs.find(and_(q(a=1), q(b=4))):
-        del doc['_id']
-        print(doc)
-    print()
-```
+Read the [Mnj Docs](http://mnj.readthedocs.io/) to find out more. 
