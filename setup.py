@@ -26,16 +26,28 @@ class PyTest(TestCommand):
 
 setup(
     name="mnj",
-    version="0.2.1",
+    version="0.3.0",
     packages=find_packages(),
     install_requires=["pymongo"],
     tests_require=["pytest"],
     cmdclass={"test": PyTest},
     author="Serge Matveenko",
     author_email="s@matveenko.ru",
+    url="https://github.com/lig/mnj",
     description=(
         "Mnj (Mongo Energy) is a helper library to simplify PyMongo" " interaction"
     ),
-    url="https://github.com/lig/mnj",
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: BSD License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3 :: Only",
+        "Topic :: Software Development :: Libraries",
+        "Topic :: Database :: Front-Ends",
+        "Typing :: Typed",
+    ],
     license="BSD",
 )
