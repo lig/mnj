@@ -1,8 +1,20 @@
+# common
 .*
-!.gitignore
 *~
-*.pyc
-*.egg-info
+!.gitignore
 
-!/.travis.yml
+# dotfiles
+!/.dockerignore
+!/.env
+!/.gitlab-ci.yml
+!/.gitmodules
 !/.landscape.yml
+!/.pre-commit-config.yaml
+!/.travis.yml
+
+# python
+*.pyc
+
+# dev
+/*.egg-info
+/pip-wheel-metadata

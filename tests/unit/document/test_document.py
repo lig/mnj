@@ -18,39 +18,29 @@ def test_doc_keeps_order():
 
 
 def test_magic_auto_defined_name(doc_registry):
-
     class D(Doc):
-        meta = {
-            'magic': True,
-        }
+        meta = {'magic': True}
 
     assert D._cls == 'D'
 
 
 def test_magic_meta_defined_name(doc_registry):
-
     class D(Doc):
-        meta = {
-            'magic': True,
-            'class_name': 'Foo'
-        }
+        meta = {'magic': True, 'class_name': 'Foo'}
 
     assert D._cls == 'Foo'
 
 
 @pytest.mark.xfail
 def test_doc_inheritance(data, doc_registry):
-
     class D(Doc):
-        meta = {
-            'magic': True
-        }
+        meta = {'magic': True}
 
     d = D(foo='bar')
 
     assert isinstance(d, D)
 
-    data.insert(d)
+    data.insert_one(d)
     d_id = d['_id']
     del d
     d = data.find_one(q(_id=d_id))
