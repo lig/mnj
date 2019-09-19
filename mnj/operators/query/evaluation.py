@@ -1,9 +1,7 @@
-import re
-
 from bson import regex as bson_regex
-import six
 
-from mnj.document.document import Doc
+from mnj import compat
+from mnj.document import document
 from mnj.operators.base import Operator, UnaryOperator
 
 
@@ -11,27 +9,25 @@ __all__ = ['mod_', 'regex_', 'text_', 'where_']
 
 
 class mod_(Operator):
-
     def __init__(self, divisor, remainder):
-        Operator.__init__(self, divisor, remainder)
+        super().__init__(divisor, remainder)
 
 
 class regex_(Operator):
-
     def __init__(self, regex, options=None):
         """`regex` could be any type of:
          * `bson.regex.Regex`
          * compiled Python regex
          * JS regex pattern
         """
-        Operator.__init__(self, regex, options)
+        super().__init__(regex, options)
 
     def prepare(self, regex, options):
 
-        if isinstance(regex, re._pattern_type):
+        if isinstance(regex, compat.Pattern):
             regex = bson_regex.Regex.from_native(regex)
 
-        if isinstance(regex, six.string_types):
+        if isinstance(regex, str):
             regex = bson_regex.Regex(regex)
 
         if isinstance(regex, bson_regex.Regex):
@@ -40,16 +36,13 @@ class regex_(Operator):
 
 
 class text_(Operator):
-
     def __init__(
-        self, search, language=None, caseSensitive=None,
-        diacriticSensitive=None
+        self, search, language=None, caseSensitive=None, diacriticSensitive=None
     ):
-        Operator.__init__(
-            self, search, language, caseSensitive, diacriticSensitive)
+        super().__init__(search, language, caseSensitive, diacriticSensitive)
 
     def prepare(self, search, language, caseSensitive, diacriticSensitive):
-        value = Doc()
+        value = document.Doc()
         value['$search'] = search
         if language is not None:
             value['$language'] = language

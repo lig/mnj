@@ -3,14 +3,17 @@ import six
 from mnj.document.query import Query
 
 
-class OperatorMeta(type):
+__all__ = ['Operator', 'UnaryOperator']
 
+
+class OperatorMeta(type):
     def __new__(cls, name, bases, attrs):
         name_chunks = name.rstrip('_').split('_')
         attrs['Sname'] = (
-            '$' +
-            name_chunks[0] +
-            ''.join(chunk.capitalize() for chunk in name_chunks[1:]))
+            '$'
+            + name_chunks[0]
+            + ''.join(chunk.capitalize() for chunk in name_chunks[1:])
+        )
         return type.__new__(cls, name, bases, attrs)
 
 

@@ -1,0 +1,25 @@
+repos:
+  - repo: local
+    hooks:
+      - id: isort
+        name: isort
+        entry: pipenv run isort
+        language: system
+        types: [python]
+      - id: mypy
+        name: mypy
+        entry: pipenv run mypy
+        language: system
+        types: [python]
+        exclude: >
+          (?x)^(
+            tests/
+          )
+  - repo: https://github.com/ambv/black
+    rev: 19.3b0
+    hooks:
+      - id: black
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.1.0
+    hooks:
+      - id: flake8

@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  tox:
+    build: .
+    image: mnj-tox
+    command: tox
+    environment: 
+      MONGODB_HOST: mongodb
+    volumes:
+      - "../mnj:/usr/src/app/mnj"
+      - "../setup.py:/usr/src/app/setup.py"
+      - "../tox.ini:/usr/src/app/tox.ini"
+      - ".:/usr/src/app/tests"
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:latest
+    volumes:
+      - "mongodata:/data/db"
+volumes:
+  mongodata: null

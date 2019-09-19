@@ -1,0 +1,18 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[requires]
+python_version = "3.8"
+
+[packages]
+mnj = {editable = true,path = "."}
+
+[dev-packages]
+"pytest-flake8" = "*"
+pytest = "*"
+pytest-black = "*"
+pytest-coverage = "*"
+pytest-isort = "*"
+pytest-mypy = "*"

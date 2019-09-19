@@ -1,6 +1,5 @@
-import six
+import collections
 
-from mnj.compat import ChainMap
 from mnj.document.base import BaseDoc
 from mnj.document.registry import registry
 
@@ -18,10 +17,8 @@ class DocMeta(type):
     def __new__(cls, name, bases, attrs):
 
         # process meta
-        meta = ChainMap(
-            attrs.pop('meta', {}),
-            {'class_name': name},
-            cls.meta_defaults,
+        meta = collections.ChainMap(
+            attrs.pop('meta', {}), {'class_name': name}, cls.meta_defaults
         )
 
         # prepare bases for modification
@@ -49,8 +46,7 @@ class MagicMixin(object):
         return super(MagicMixin, self).__init__(*args, **kwargs)
 
 
-@six.add_metaclass(DocMeta)
-class Doc(BaseDoc):
+class Doc(BaseDoc, metaclass=DocMeta):
     pass
 
 

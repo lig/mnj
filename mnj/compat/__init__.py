@@ -1,4 +1,4 @@
-try:
-    from collections import ChainMap
-except ImportError:
-    from chainmap import ChainMap
+from .regex import Pattern
+
+
+__all__ = ['Pattern']
