@@ -28,11 +28,11 @@ setup(
     name="mnj",
     version="0.3.0",
     packages=find_packages(),
-    install_requires=["pymongo"],
+    install_requires=["attrs", "pymongo"],
     tests_require=["pytest"],
     cmdclass={"test": PyTest},
     author="Serge Matveenko",
-    author_email="s@matveenko.ru",
+    author_email="lig@countzero.co",
     url="https://github.com/lig/mnj",
     description=(
         "Mnj (Mongo Energy) is a helper library to simplify PyMongo" " interaction"

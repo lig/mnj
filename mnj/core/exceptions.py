@@ -1,4 +1,9 @@
-from mnj.exceptions import BaseMnjError
+class BaseMnjError(BaseException):
+    pass
+
+
+class ClientError(BaseMnjError):
+    pass
 
 
 class BaseRegistryError(BaseMnjError):

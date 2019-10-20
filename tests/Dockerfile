@@ -8,4 +8,5 @@ ENV LC_ALL=C.UTF-8 \
 
 RUN dnf --setopt=install_weak_deps=False install -y \
     python3-tox \
-    python36
+    python36 \
+    python38

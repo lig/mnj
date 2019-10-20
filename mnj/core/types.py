@@ -23,6 +23,7 @@ class BSONType(enum.Enum):
     MinKey = -1
     MaxKey = 127
 
+
 BSON_DOUBLE = BSONType['Double']
 BSON_STRING = BSONType['String']
 BSON_OBJECT = BSONType['Object']
