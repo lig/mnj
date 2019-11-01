@@ -1,6 +1,6 @@
 import sys
 
-from setuptools import find_packages, setup
+from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
 
@@ -26,8 +26,8 @@ class PyTest(TestCommand):
 
 setup(
     name="mnj",
-    version="0.3.0",
-    packages=find_packages(),
+    version="1.0.0-alpha-1",
+    packages=["nj"],
     install_requires=["attrs", "pymongo"],
     tests_require=["pytest"],
     cmdclass={"test": PyTest},
