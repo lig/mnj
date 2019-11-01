@@ -19,12 +19,12 @@ class Q(base.MongoObject):
         super().__init__(*args, **kwargs)
 
     def __and__(self, other: typing.Union['Q', typing.Mapping]) -> 'Q':
-        from mnj.operators import and_
+        from nj.operators import and_
 
         return and_(self, other)
 
     def __or__(self, other: typing.Union['Q', typing.Mapping]) -> 'Q':
-        from mnj.operators import or_
+        from nj.operators import or_
 
         return or_(self, other)
 

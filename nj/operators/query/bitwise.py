@@ -3,8 +3,8 @@ from collections import abc
 import six
 from bson.binary import Binary
 
-from mnj.operators.base import UnaryOperator
-from mnj.operators.exceptions import MnjOperatorError
+from nj.operators.base import UnaryOperator
+from nj.operators.exceptions import MnjOperatorError
 
 
 __all__ = ['bits_all_set_', 'bits_any_set_', 'bits_all_clear_', 'bits_any_clear_']

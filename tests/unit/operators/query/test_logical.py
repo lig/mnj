@@ -1,4 +1,4 @@
-from mnj import *
+from nj import *
 
 
 def test_and():

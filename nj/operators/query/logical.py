@@ -1,5 +1,5 @@
-from mnj.document.query import Query
-from mnj.operators.base import Operator, UnaryOperator
+from nj.document.query import Query
+from nj.operators.base import Operator, UnaryOperator
 
 
 __all__ = ['and_', 'nor_', 'not_', 'or_']

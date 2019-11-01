@@ -1,6 +1,6 @@
 import pytest
 
-from mnj import *
+from nj import *
 
 
 def test_query_empty():

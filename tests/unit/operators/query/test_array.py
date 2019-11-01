@@ -1,7 +1,7 @@
 import pytest
 
-from mnj import *
-from mnj.operators.exceptions import MnjOperatorError
+from nj import *
+from nj.operators.exceptions import MnjOperatorError
 
 
 def test_all():

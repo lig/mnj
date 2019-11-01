@@ -1,7 +1,7 @@
 from bson.binary import Binary
 import pytest
 
-from mnj import *
+from nj import *
 
 
 @pytest.mark.parametrize('func,op', [

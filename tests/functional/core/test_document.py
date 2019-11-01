@@ -3,18 +3,18 @@ import bson
 import pymongo
 import pytest
 
-import mnj
+import nj
 
 
 def test_001_default_collection_name():
-    class TestDocument(mnj.Document):
+    class TestDocument(nj.Document):
         pass
 
     assert TestDocument._meta.collection_name == 'testDocument'
 
 
 def test_002_explicit_collection_name():
-    class TestDocument(mnj.Document):
+    class TestDocument(nj.Document):
         class Meta:
             collection_name = 'my_document'
 
@@ -25,7 +25,7 @@ def test_002_explicit_collection_name():
     reason="Cannot register multiple classes for a single collection yet"
 )
 def test_003_keep_collection_name_when_subclassing():
-    class TestDocument(mnj.Document):
+    class TestDocument(nj.Document):
         class Meta:
             collection_name = 'my_document'
 
@@ -36,7 +36,7 @@ def test_003_keep_collection_name_when_subclassing():
 
 
 def test_004_allow_to_override_collection_name_when_subclassing():
-    class TestDocument(mnj.Document):
+    class TestDocument(nj.Document):
         class Meta:
             collection_name = 'my_document'
 
@@ -48,7 +48,7 @@ def test_004_allow_to_override_collection_name_when_subclassing():
 
 
 def test_005_document_col_property(mnj_client):
-    class TestDocument(mnj.Document):
+    class TestDocument(nj.Document):
         pass
 
     assert isinstance(TestDocument._col, pymongo.collection.Collection)
@@ -57,7 +57,7 @@ def test_005_document_col_property(mnj_client):
 
 
 def test_006_document_python_to_mongo(db, mnj_client, clean):
-    class TestDocument(mnj.Document):
+    class TestDocument(nj.Document):
         str_attr: str
         int_attr: int
         float_attr: float
@@ -80,7 +80,7 @@ def test_006_document_python_to_mongo(db, mnj_client, clean):
 
 
 def test_007_document_mongo_to_python(db, mnj_client, clean):
-    class TestDocument(mnj.Document):
+    class TestDocument(nj.Document):
         str_attr: str
         int_attr: int
         float_attr: float

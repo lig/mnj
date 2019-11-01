@@ -2,9 +2,9 @@
 .*
 *~
 !.gitignore
+!.dockerignore
 
 # dotfiles
-!/.dockerignore
 !/.env
 !/.gitlab-ci.yml
 !/.gitmodules

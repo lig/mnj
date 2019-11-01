@@ -1,6 +1,6 @@
-from mnj.document.query import Query
-from mnj.operators.base import Operator, UnaryOperator
-from mnj.operators.exceptions import MnjOperatorError
+from nj.document.query import Query
+from nj.operators.base import Operator, UnaryOperator
+from nj.operators.exceptions import MnjOperatorError
 
 
 __all__ = ['all_', 'elem_match_', 'size_']

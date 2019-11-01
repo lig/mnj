@@ -1,5 +1,5 @@
-from mnj import *
-from mnj.document.types import BSON_STRING
+from nj import *
+from nj.document.types import BSON_STRING
 
 
 def test_exists():

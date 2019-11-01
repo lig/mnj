@@ -18,9 +18,9 @@ def mongo_client(mongo_host):
 
 @pytest.fixture(scope='session')
 def mnj_client(mongo_host):
-    import mnj
+    import nj
 
-    mnj.create_client(db_name='test', host=mongo_host)
+    nj.create_client(db_name='test', host=mongo_host)
 
 
 @pytest.fixture(scope='session')
@@ -37,7 +37,7 @@ def clean(mongo_client, db):
 
 @pytest.yield_fixture(autouse=True)
 def doc_registry():
-    from mnj.core import registry
+    from nj.core import registry
 
     registry.class_registry = registry.Registry()
     yield registry.class_registry

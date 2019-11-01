@@ -1,6 +1,6 @@
 import six
 
-from mnj.document.query import Query
+from nj.document.query import Query
 
 
 __all__ = ['Operator', 'UnaryOperator']

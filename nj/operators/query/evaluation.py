@@ -1,8 +1,8 @@
 from bson import regex as bson_regex
 
-from mnj import compat
-from mnj.document import document
-from mnj.operators.base import Operator, UnaryOperator
+from nj import compat
+from nj.document import document
+from nj.operators.base import Operator, UnaryOperator
 
 
 __all__ = ['mod_', 'regex_', 'text_', 'where_']

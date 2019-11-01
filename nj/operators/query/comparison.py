@@ -1,4 +1,4 @@
-from mnj.operators.base import Operator, UnaryOperator
+from nj.operators.base import Operator, UnaryOperator
 
 
 __all__ = ['gt_', 'gte_', 'in_', 'lt_', 'lte_', 'ne_', 'nin_']

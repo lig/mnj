@@ -1,4 +1,4 @@
-from mnj.exceptions import BaseMnjError
+from nj.exceptions import BaseMnjError
 
 
 class MnjOperatorError(BaseMnjError):

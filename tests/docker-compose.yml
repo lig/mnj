@@ -7,7 +7,7 @@ services:
     environment: 
       MONGODB_HOST: mongodb
     volumes:
-      - "../mnj:/usr/src/app/mnj"
+      - "../nj:/usr/src/app/nj"
       - "../setup.py:/usr/src/app/setup.py"
       - "../tox.ini:/usr/src/app/tox.ini"
       - ".:/usr/src/app/tests"

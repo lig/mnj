@@ -1,7 +1,7 @@
 from six import string_types
 
-from mnj.document.types import BSONType
-from mnj.operators.base import UnaryOperator
+from nj.document.types import BSONType
+from nj.operators.base import UnaryOperator
 
 
 __all__ = ['exists_', 'type_']
