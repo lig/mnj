@@ -39,7 +39,6 @@ class DocumentType(abc.ABCMeta):
         ]
 
 
-@attr.s(auto_attribs=True, kw_only=True)
 class Document(collections.abc.MutableMapping, metaclass=DocumentType):
     _meta: typing.ClassVar[DocumentMeta]
     _col: typing.ClassVar[pymongo.collection.Collection]

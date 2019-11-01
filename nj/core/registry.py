@@ -1,6 +1,6 @@
 import collections
 import typing
-
+import collections.abc
 import bson
 
 from . import client, exceptions
@@ -51,7 +51,7 @@ class Registry(object):
 class_registry = Registry()
 
 
-class DocumentFactory(bson.raw_bson.RawBSONDocument, dict):
+class DocumentFactory(bson.raw_bson.RawBSONDocument, collections.abc.MutableMapping):
     def __new__(
         cls, bson_bytes: bytes, codec_options: typing.Optional[bson.CodecOptions] = None
     ) -> 'DocumentFactory':
