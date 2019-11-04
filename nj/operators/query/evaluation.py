@@ -1,20 +1,22 @@
-from bson import regex as bson_regex
+import typing
 
-from nj import compat
-from nj.document import document
-from nj.operators.base import Operator, UnaryOperator
+import bson.regex
+
+from nj import compat, core, operators
 
 
 __all__ = ['mod_', 'regex_', 'text_', 'where_']
 
+regex_T = typing.TypeVar('regex_T', bson.regex.Regex, compat.Pattern, str)
 
-class mod_(Operator):
-    def __init__(self, divisor, remainder):
+
+class mod_(operators.Operator):
+    def __init__(self, divisor: int, remainder: int) -> None:
         super().__init__(divisor, remainder)
 
 
-class regex_(Operator):
-    def __init__(self, regex, options=None):
+class regex_(operators.Operator):
+    def __init__(self, regex: regex_T, options: typing.Optional[int] = None) -> None:
         """`regex` could be any type of:
          * `bson.regex.Regex`
          * compiled Python regex
@@ -22,27 +24,42 @@ class regex_(Operator):
         """
         super().__init__(regex, options)
 
-    def prepare(self, regex, options):
+    def prepare(  # type: ignore
+        self, regex: regex_T, options: typing.Optional[int]
+    ) -> bson.regex.Regex:  # type: ignore
 
         if isinstance(regex, compat.Pattern):
-            regex = bson_regex.Regex.from_native(regex)
+            regex = bson.regex.Regex.from_native(regex)
+        elif isinstance(regex, str):
+            regex = bson.regex.Regex(regex)
 
-        if isinstance(regex, str):
-            regex = bson_regex.Regex(regex)
+        if not isinstance(regex, bson.regex.Regex):
+            raise operators.MnjOperatorError(
+                "`regex` must be an instance of compiled `re` pattern, `str` or `bson.regex.Regex`"
+            )
 
-        if isinstance(regex, bson_regex.Regex):
-            regex.flags |= options or 0
-            return regex
+        regex.flags |= options if options is not None else 0
+        return regex
 
 
-class text_(Operator):
+class text_(operators.Operator):
     def __init__(
-        self, search, language=None, caseSensitive=None, diacriticSensitive=None
-    ):
+        self,
+        search: str,
+        language: typing.Optional[str] = None,
+        caseSensitive: typing.Optional[bool] = None,
+        diacriticSensitive: typing.Optional[bool] = None,
+    ) -> None:
         super().__init__(search, language, caseSensitive, diacriticSensitive)
 
-    def prepare(self, search, language, caseSensitive, diacriticSensitive):
-        value = document.Doc()
+    def prepare(  # type: ignore
+        self,
+        search: str,
+        language: typing.Optional[str] = None,
+        caseSensitive: typing.Optional[bool] = None,
+        diacriticSensitive: typing.Optional[bool] = None,
+    ) -> core.MongoObject:  # type: ignore
+        value = core.MongoObject()
         value['$search'] = search
         if language is not None:
             value['$language'] = language
@@ -53,5 +70,5 @@ class text_(Operator):
         return value
 
 
-class where_(UnaryOperator):
+class where_(operators.UnaryOperator):
     pass

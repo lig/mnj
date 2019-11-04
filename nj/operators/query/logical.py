@@ -1,29 +1,21 @@
-from nj.document.query import Query
-from nj.operators.base import Operator, UnaryOperator
+from nj import core, operators
 
 
 __all__ = ['and_', 'nor_', 'not_', 'or_']
 
 
-class _binary(Operator):
-
-    def prepare(self, *values):
-        return [Query(query) for query in values]
-
-
-class and_(_binary):
+class and_(operators.ArgsOperator):
     pass
 
 
-class nor_(_binary):
+class nor_(operators.ArgsOperator):
     pass
 
 
-class not_(UnaryOperator):
+class not_(operators.UnaryOperator):
+    def prepare(self, value: core.MongoObject_T) -> core.MongoObject:  # type: ignore
+        return core.MongoObject(value)
 
-    def prepare(self, value):
-        return Query(value)
 
-
-class or_(_binary):
+class or_(operators.ArgsOperator):
     pass

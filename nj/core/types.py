@@ -2,7 +2,7 @@ import enum
 
 
 @enum.unique
-class BSONType(enum.Enum):
+class BSONType(int, enum.Enum):
     Double = 1
     String = 2
     Object = 3

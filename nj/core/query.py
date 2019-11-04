@@ -8,23 +8,13 @@ if typing.TYPE_CHECKING:
 
 
 class Q(base.MongoObject):
-    def __init__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-
-        if len(args) > 1:
-            q = Q()
-            for arg in args:
-                q.update(arg)
-            args = [q]  # type: ignore
-
-        super().__init__(*args, **kwargs)
-
     def __and__(self, other: typing.Union['Q', typing.Mapping]) -> 'Q':
-        from nj.operators import and_
+        from nj import and_
 
         return and_(self, other)
 
     def __or__(self, other: typing.Union['Q', typing.Mapping]) -> 'Q':
-        from nj.operators import or_
+        from nj import or_
 
         return or_(self, other)
 
@@ -32,7 +22,12 @@ class Q(base.MongoObject):
 class Query(Q):
     _document_class: 'document.DocumentType'
 
-    def __init__(self, *args, document_class: 'document.DocumentType', **kwargs):
+    def __init__(
+        self,
+        *args: typing.Any,
+        document_class: 'document.DocumentType',
+        **kwargs: typing.Any,
+    ) -> None:
         self._document_class = document_class
         super().__init__(*args, **kwargs)
 

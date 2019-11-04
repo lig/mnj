@@ -1,5 +1,5 @@
-from . import query
-from .query import *  # noqa: 403
+from .base import ArgsOperator, Operator, UnaryOperator
+from .exceptions import MnjOperatorError
 
 
-__all__ = query.__all__
+__all__ = ['ArgsOperator', 'MnjOperatorError', 'Operator', 'UnaryOperator']

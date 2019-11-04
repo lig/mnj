@@ -1,23 +1,27 @@
-from six import string_types
+import typing
 
-from nj.document.types import BSONType
-from nj.operators.base import UnaryOperator
+from nj import core, operators
 
 
 __all__ = ['exists_', 'type_']
 
 
-class exists_(UnaryOperator):
-
-    def prepare(self, value):
+class exists_(operators.UnaryOperator):
+    def prepare(self, value: typing.Union[bool, typing.Any]) -> bool:  # type: ignore
         return bool(value)
 
 
-class type_(UnaryOperator):
+class type_(operators.UnaryOperator):
+    def prepare(  # type: ignore
+        self, value: typing.Union[core.BSONType, str]
+    ) -> core.BSONType:  # type: ignore
 
-    def prepare(self, value):
-        if isinstance(value, BSONType):
-            value = value.value
-        elif isinstance(value, string_types):
-            value = BSONType[value].value
+        if isinstance(value, str):
+            value = core.BSONType[value]
+
+        if not isinstance(value, core.BSONType):
+            raise operators.MnjOperatorError(
+                "`type` must be an instance of `nj.BSONType` or `str`"
+            )
+
         return value

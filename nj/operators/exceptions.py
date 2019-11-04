@@ -1,7 +1,7 @@
-from nj.exceptions import BaseMnjError
+from nj import core
 
 
-class MnjOperatorError(BaseMnjError):
+class MnjOperatorError(core.BaseMnjError):
     pass
 
 

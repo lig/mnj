@@ -1,32 +1,32 @@
-from nj.operators.base import Operator, UnaryOperator
+from nj import operators
 
 
 __all__ = ['gt_', 'gte_', 'in_', 'lt_', 'lte_', 'ne_', 'nin_']
 
 
-class gt_(UnaryOperator):
+class gt_(operators.UnaryOperator):
     pass
 
 
-class gte_(UnaryOperator):
+class gte_(operators.UnaryOperator):
     pass
 
 
-class in_(Operator):
+class in_(operators.Operator):
     pass
 
 
-class lt_(UnaryOperator):
+class lt_(operators.UnaryOperator):
     pass
 
 
-class lte_(UnaryOperator):
+class lte_(operators.UnaryOperator):
     pass
 
 
-class ne_(UnaryOperator):
+class ne_(operators.UnaryOperator):
     pass
 
 
-class nin_(Operator):
+class nin_(operators.Operator):
     pass

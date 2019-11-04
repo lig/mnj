@@ -1,49 +1,53 @@
-from collections import abc
+import typing
 
-import six
-from bson.binary import Binary
+import bson.binary
 
-from nj.operators.base import UnaryOperator
-from nj.operators.exceptions import MnjOperatorError
+from nj import operators
 
 
 __all__ = ['bits_all_set_', 'bits_any_set_', 'bits_all_clear_', 'bits_any_clear_']
 
+bitmask_T = typing.TypeVar(
+    'bitmask_T', bson.binary.Binary, int, bytes, typing.Iterable[int]
+)
 
-class _bitwise(UnaryOperator):
-    def __init__(self, bitmask):
-        UnaryOperator.__init__(self, bitmask)
 
-    def prepare(self, value):
+class BitwiseOperator(operators.UnaryOperator):
+    def __init__(self, bitmask: bitmask_T) -> None:
+        super().__init__(bitmask)
 
-        if isinstance(value, (Binary, int)):
+    def prepare(  # type: ignore
+        self, value: bitmask_T
+    ) -> typing.Union[bson.binary.Binary, int, typing.Iterable[int]]:  # type: ignore
+
+        if isinstance(value, (bson.binary.Binary, int)):
             return value
 
-        if isinstance(value, six.binary_type):
-            return Binary(value)
+        if isinstance(value, bytes):
+            return bson.binary.Binary(value)
 
-        if isinstance(value, abc.Iterable) and all(
+        if isinstance(value, typing.Iterable) and all(
             isinstance(item, int) for item in value
         ):
             return value
 
-        raise MnjOperatorError(
-            '`bitmask` must be one of: `bson.Binary`, `int`, `{}` or'
-            ' iterable of integers'.format(six.binary_type.__name__)
+        raise operators.MnjOperatorError(
+            "`bitmask` must be one of: `bson.Binary`, `int`, `bytes` or iterable of"
+            " integers"
         )
 
 
-class bits_all_set_(_bitwise):
+class bits_all_set_(BitwiseOperator):
     pass
 
 
-class bits_any_set_(_bitwise):
+class bits_any_set_(BitwiseOperator):
     pass
 
 
-class bits_all_clear_(_bitwise):
+class bits_all_clear_(BitwiseOperator):
     pass
 
 
-class bits_any_clear_(_bitwise):
+class bits_any_clear_(BitwiseOperator):
     pass

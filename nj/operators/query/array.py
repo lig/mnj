@@ -1,34 +1,31 @@
-from nj.document.query import Query
-from nj.operators.base import Operator, UnaryOperator
-from nj.operators.exceptions import MnjOperatorError
+import typing
+
+from nj import core, operators
 
 
 __all__ = ['all_', 'elem_match_', 'size_']
 
 
-class all_(Operator):
-
-    def __init__(self, *values):
-        Operator.__init__(self, *values)
-
-
-class elem_match_(UnaryOperator):
-
-    def __init__(self, query):
-        UnaryOperator.__init__(self, query)
-
-    def prepare(self, value):
-        return UnaryOperator.prepare(self, Query(value))
+class all_(operators.Operator):
+    def __init__(self, *values: typing.Any) -> None:
+        super().__init__(*values)
 
 
-class size_(UnaryOperator):
+class elem_match_(operators.UnaryOperator):
+    def __init__(self, query: core.MongoObject_T) -> None:
+        super().__init__(query)
 
-    def __init__(self, size):
-        UnaryOperator.__init__(self, size)
+    def prepare(self, value: core.MongoObject_T) -> core.MongoObject:  # type: ignore
+        return super().prepare(core.MongoObject(value))
 
-    def prepare(self, value):
+
+class size_(operators.UnaryOperator):
+    def __init__(self, size: int) -> None:
+        super().__init__(size)
+
+    def prepare(self, value: int) -> int:  # type: ignore
 
         if not isinstance(value, int):
-            raise MnjOperatorError('`size` must be integer')
+            raise operators.MnjOperatorError("`size` must be integer")
 
-        return UnaryOperator.prepare(self, value)
+        return super().prepare(value)

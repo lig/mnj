@@ -1,6 +1,11 @@
 import os
+import typing
 
 import pytest
+
+
+if typing.TYPE_CHECKING:
+    import pymongo
 
 
 @pytest.fixture(scope='session')
@@ -42,3 +47,20 @@ def doc_registry():
     registry.class_registry = registry.Registry()
     yield registry.class_registry
     registry.class_registry = registry.Registry()
+
+
+@pytest.yield_fixture
+def data(db):
+    data: pymongo.collection.Collection = db.data
+    data.drop()
+    data.insert_many(
+        [
+            {'_id': '11', 'a': 1, 'b': 1},
+            {'_id': '22', 'a': 2, 'b': 2},
+            {'_id': '33', 'a': 3, 'b': 3},
+            {'_id': '14', 'a': 1, 'b': 4},
+            {'_id': '25', 'a': 2, 'b': 5},
+            {'_id': '36', 'a': 3, 'b': 6},
+        ]
+    )
+    yield data
