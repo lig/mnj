@@ -4,7 +4,7 @@ services:
     build: .
     image: mnj-tox
     command: tox
-    environment: 
+    environment:
       MONGODB_HOST: mongodb
     volumes:
       - "../nj:/usr/src/app/nj"
