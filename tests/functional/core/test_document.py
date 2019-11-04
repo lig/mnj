@@ -1,7 +1,6 @@
 import attr
 import bson
 import pymongo
-import pytest
 
 import nj
 
@@ -21,9 +20,6 @@ def test_002_explicit_collection_name():
     assert TestDocument._meta.collection_name == 'my_document'
 
 
-@pytest.mark.xfail(
-    reason="Cannot register multiple classes for a single collection yet"
-)
 def test_003_keep_collection_name_when_subclassing():
     class TestDocument(nj.Document):
         class Meta:
