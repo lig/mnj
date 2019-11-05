@@ -1,21 +1,24 @@
-from bson.binary import Binary
+import bson.binary
 import pytest
 
-from nj import *
+import nj
 
 
-@pytest.mark.parametrize('func,op', [
-    (bits_all_set_, '$bitsAllSet'),
-    (bits_any_set_, '$bitsAnySet'),
-    (bits_all_clear_, '$bitsAllClear'),
-    (bits_any_clear_, '$bitsAnyClear'),
-])
+@pytest.mark.parametrize(
+    'func,op',
+    [
+        (nj.bits_all_set_, '$bitsAllSet'),
+        (nj.bits_any_set_, '$bitsAnySet'),
+        (nj.bits_all_clear_, '$bitsAllClear'),
+        (nj.bits_any_clear_, '$bitsAnyClear'),
+    ],
+)
 def test_bitwise(func, op):
-    query = func(Binary(b'*'))
-    assert query == {op: Binary(b'*')}
+    query = func(bson.binary.Binary(b'*'))
+    assert query == {op: bson.binary.Binary(b'*')}
 
     query = func(b'*')
-    assert query == {op: Binary(b'*')}
+    assert query == {op: bson.binary.Binary(b'*')}
 
     query = func(42)
     assert query == {op: 42}

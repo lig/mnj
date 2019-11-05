@@ -1,4 +1,5 @@
-from nj.core.client import create_client, get_client
+from nj.core.base import MongoObject
+from nj.core.client import create_client, get_client, get_db
 from nj.core.document import Document
 from nj.core.query import Q as q
 from nj.core.registry import DocumentFactory
@@ -70,12 +71,14 @@ __all__ = [
     'elem_match_',
     'exists_',
     'get_client',
+    'get_db',
     'gt_',
     'gte_',
     'in_',
     'lt_',
     'lte_',
     'mod_',
+    'MongoObject',
     'ne_',
     'nin_',
     'nor_',

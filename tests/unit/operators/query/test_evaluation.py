@@ -1,7 +1,6 @@
 import re
 
-import six
-from bson.regex import Regex
+import bson.regex
 
 import nj
 
@@ -16,29 +15,29 @@ def test_mod():
 
 def test_regex():
     pattern = r'(?:\d{3}|\(\d{3}\))([-\/\.])\d{3}\1\d{4}'
-    query = nj.q(nj.regex_(Regex(pattern)))
-    assert query == {'$regex': Regex(pattern)}
+    query = nj.q(nj.regex_(bson.regex.Regex(pattern)))
+    assert query == {'$regex': bson.regex.Regex(pattern)}
 
-    query = nj.q(nj.regex_(Regex(pattern), re.MULTILINE))
-    assert query == {'$regex': Regex(pattern, re.MULTILINE)}
+    query = nj.q(nj.regex_(bson.regex.Regex(pattern), re.MULTILINE))
+    assert query == {'$regex': bson.regex.Regex(pattern, re.MULTILINE)}
 
-    query = nj.q(nj.regex_(regex=Regex(pattern), options=re.MULTILINE))
-    assert query == {'$regex': Regex(pattern, re.MULTILINE)}
+    query = nj.q(nj.regex_(regex=bson.regex.Regex(pattern), options=re.MULTILINE))
+    assert query == {'$regex': bson.regex.Regex(pattern, re.MULTILINE)}
 
     query = nj.q(nj.regex_(regex=re.compile(pattern), options=re.MULTILINE))
-    assert query == {'$regex': Regex(pattern, re.MULTILINE | (six.PY3 and re.UNICODE))}
+    assert query == {'$regex': bson.regex.Regex(pattern, re.MULTILINE | re.UNICODE)}
 
     query = nj.q(nj.regex_(regex=re.compile(pattern, re.MULTILINE)))
-    assert query == {'$regex': Regex(pattern, re.MULTILINE | (six.PY3 and re.UNICODE))}
+    assert query == {'$regex': bson.regex.Regex(pattern, re.MULTILINE | re.UNICODE)}
 
     query = nj.q(nj.regex_(regex=re.compile(pattern, re.MULTILINE)))
-    assert query == {'$regex': Regex(pattern, re.MULTILINE | (six.PY3 and re.UNICODE))}
+    assert query == {'$regex': bson.regex.Regex(pattern, re.MULTILINE | re.UNICODE)}
 
     query = nj.q(nj.regex_(pattern))
-    assert query == {'$regex': Regex(pattern)}
+    assert query == {'$regex': bson.regex.Regex(pattern)}
 
     query = nj.q(nj.regex_(pattern, re.MULTILINE))
-    assert query == {'$regex': Regex(pattern, re.MULTILINE)}
+    assert query == {'$regex': bson.regex.Regex(pattern, re.MULTILINE)}
 
 
 def test_text():

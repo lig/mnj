@@ -4,7 +4,7 @@ import typing
 
 import bson
 
-from . import client, exceptions
+from . import base, client, exceptions
 
 
 if typing.TYPE_CHECKING:
@@ -45,14 +45,12 @@ class Registry(object):
 
     def get_candidates(
         self, ns: str
-    ) -> typing.MutableMapping[str, typing.Type['document.Document']]:
+    ) -> typing.Union[
+        typing.MutableMapping[str, typing.Type['document.Document']],
+        typing.MutableMapping[str, typing.Type[base.MongoObject]],
+    ]:
 
         database_name, _, collection_name = ns.partition('.')
-
-        if collection_name not in self._registry:
-            raise exceptions.ClassIsNotRegisteredError(
-                f"Unknown collection name `{collection_name}`"
-            )
 
         for client_name in self._registry[collection_name]:
             client_entry = client.get_entry(client_name=client_name)
@@ -60,7 +58,7 @@ class Registry(object):
             if client_entry.db_name == database_name:
                 return self._registry[collection_name][client_name]
 
-        raise exceptions.ClassIsNotRegisteredError(f"Class for ns `{ns}` not found")
+        return {base.MongoObject.__qualname__: base.MongoObject}
 
 
 class_registry = Registry()

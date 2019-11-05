@@ -13,15 +13,17 @@ class exists_(operators.UnaryOperator):
 
 class type_(operators.UnaryOperator):
     def prepare(  # type: ignore
-        self, value: typing.Union[core.BSONType, str]
+        self, value: typing.Union[core.BSONType, int, str]
     ) -> core.BSONType:  # type: ignore
 
-        if isinstance(value, str):
+        if isinstance(value, int):
+            value = core.BSONType(value)
+        elif isinstance(value, str):
             value = core.BSONType[value]
 
         if not isinstance(value, core.BSONType):
             raise operators.MnjOperatorError(
-                "`type` must be an instance of `nj.BSONType` or `str`"
+                "`type` must be an instance of `nj.BSONType`, `int` or `str`"
             )
 
         return value

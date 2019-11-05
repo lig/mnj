@@ -1,18 +1,17 @@
-from nj import *
-from nj.document.types import BSON_STRING
+import nj
 
 
 def test_exists():
-    query = q({'a': exists_(1)})
+    query = nj.q({'a': nj.exists_(1)})
     assert query == {'a': {'$exists': True}}
 
 
 def test_type():
-    query = q({'a': type_(2)})
+    query = nj.q({'a': nj.type_(2)})
     assert query == {'a': {'$type': 2}}
 
-    query = q({'a': type_('String')})
+    query = nj.q({'a': nj.type_('String')})
     assert query == {'a': {'$type': 2}}
 
-    query = q({'a': type_(BSON_STRING)})
+    query = nj.q({'a': nj.type_(nj.BSON_STRING)})
     assert query == {'a': {'$type': 2}}
