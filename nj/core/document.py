@@ -22,18 +22,23 @@ class DocumentType(abc.ABCMeta):
         name: str,
         bases: typing.Tuple[type, ...],
         namespace: typing.Dict[str, typing.Any],
-    ) -> 'DocumentMeta':
-        return attr.s(auto_attribs=True, kw_only=True)(
-            super().__new__(cls, name, bases, namespace)
+    ) -> 'DocumentType':
+        return typing.cast(
+            'DocumentType',
+            attr.s(auto_attribs=True, kw_only=True)(
+                super().__new__(cls, name, bases, namespace)
+            ),
         )
 
-    def __call__(cls, **kwargs: typing.Any) -> 'Document':
+    def __call__(cls, **kwargs: typing.Any) -> 'Document':  # type: ignore
         if '_id' in kwargs:
             kwargs['id'] = kwargs.pop('_id')
         return super().__call__(**kwargs)
 
     @property
-    def _col(cls) -> pymongo.collection.Collection:
+    def _col(  # type: ignore
+        cls: typing.Type['Document']
+    ) -> pymongo.collection.Collection:  # type: ignore
         return client.get_db(client_name=cls._meta.client_name)[
             cls._meta.collection_name
         ]

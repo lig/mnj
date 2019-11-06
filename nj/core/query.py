@@ -4,7 +4,7 @@ from . import base
 
 
 if typing.TYPE_CHECKING:
-    from . import document
+    from . import document  # noqa: F401
 
 
 class Q(base.MongoObject):
@@ -20,18 +20,18 @@ class Q(base.MongoObject):
 
 
 class Query(Q):
-    _document_class: 'document.DocumentType'
+    _document_class: typing.Type['document.Document']
 
     def __init__(
         self,
         *args: typing.Any,
-        document_class: 'document.DocumentType',
+        document_class: typing.Type['document.Document'],
         **kwargs: typing.Any,
     ) -> None:
         self._document_class = document_class
         super().__init__(*args, **kwargs)
 
     def __getattribute__(self, name: str) -> typing.Any:
-        if not name.startswith('_') and hasattr(self._collection, name):
+        if not name.startswith('_') and hasattr(self._document_class._col, name):
             return getattr(self._document_class._col, name)
         return super().__getattribute__(name)
