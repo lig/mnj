@@ -1,22 +1,23 @@
 import sys
+import typing
 
-from setuptools import setup
+from setuptools import find_packages, setup
 from setuptools.command.test import test as TestCommand
 
 
 class PyTest(TestCommand):
     # user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
 
-    def initialize_options(self):
+    def initialize_options(self) -> None:
         TestCommand.initialize_options(self)
-        self.pytest_args = []
+        self.pytest_args: typing.List[str] = []
 
-    def finalize_options(self):
+    def finalize_options(self) -> None:
         TestCommand.finalize_options(self)
-        self.test_args = []
+        self.test_args: typing.List[str] = []
         self.test_suite = True
 
-    def run_tests(self):
+    def run_tests(self) -> None:
         # import here, cause outside the eggs aren't loaded
         import pytest
 
@@ -27,7 +28,7 @@ class PyTest(TestCommand):
 setup(
     name="mnj",
     version="1.0.0-alpha-2",
-    packages=["nj"],
+    packages=find_packages(include=('nj', 'nj.*')),
     install_requires=["attrs", "pymongo"],
     tests_require=["pytest"],
     cmdclass={"test": PyTest},
