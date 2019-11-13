@@ -27,7 +27,7 @@ class PyTest(TestCommand):
 
 setup(
     name="mnj",
-    version="1.0.0-alpha-2",
+    version="1.0.0-alpha-3",
     packages=find_packages(include=('nj', 'nj.*')),
     install_requires=["attrs", "pymongo"],
     tests_require=["pytest"],
