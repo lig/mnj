@@ -22,31 +22,9 @@ def mongo_client(mongo_host):
 
 
 @pytest.fixture(scope='session')
-def mnj_client(mongo_host):
-    import nj
-
-    nj.create_client(db_name='test', host=mongo_host)
-
-
-@pytest.fixture(scope='session')
 def db(mongo_client):
     mongo_client.drop_database('test')
     return mongo_client.test
-
-
-@pytest.yield_fixture
-def clean(mongo_client, db):
-    yield
-    mongo_client.drop_database(db.name)
-
-
-@pytest.yield_fixture(autouse=True)
-def doc_registry():
-    from nj.core import registry
-
-    registry.class_registry = registry.Registry()
-    yield registry.class_registry
-    registry.class_registry = registry.Registry()
 
 
 @pytest.yield_fixture
@@ -64,3 +42,27 @@ def data(db):
         ]
     )
     yield data
+
+
+@pytest.yield_fixture
+def clean(mongo_client, db):
+    yield
+    mongo_client.drop_database(db.name)
+
+
+@pytest.fixture()
+def mnj_client(mongo_host):
+    import nj
+
+    nj.create_client(db_name='test', host=mongo_host)
+    yield nj.get_client()
+    del nj.core.client._client_registry[nj.core.client._DEFAULT_CLIENT_NAME]
+
+
+@pytest.yield_fixture(autouse=True)
+def doc_registry():
+    from nj.core import registry
+
+    registry.class_registry = registry.Registry()
+    yield registry.class_registry
+    registry.class_registry = registry.Registry()
