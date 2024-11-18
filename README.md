@@ -4,7 +4,7 @@
 
 # Mnj
 
-![Mnj Logo](logo-150.png)
+![Mnj Logo](logo-200.png)
 
 ⚠️ **WARNING** `master` branch is undergoing development, docs could be outdated.
 
