@@ -31,11 +31,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/lig/mnj"
+Homepage = "https://codeberg.org/lig/mnj"
 Documentation = "https://mnj.readthedocs.io/"
-Repository = "https://github.com/lig/mnj"
-"Bug Tracker" = "https://github.com/lig/mnj/issues"
-Changelog = "https://github.com/lig/mnj/releases"
-
-[tool.black]
-skip-string-normalization = true
+Repository = "https://codeberg.org/lig/mnj"
+"Bug Tracker" = "https://codeberg.org/lig/mnj/issues"
+Changelog = "https://codeberg.org/lig/mnj/releases"
