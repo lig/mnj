@@ -8,12 +8,12 @@ if typing.TYPE_CHECKING:
     import pymongo
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def mongo_host():
-    return os.getenv('MONGODB_HOST', 'localhost')
+    return os.getenv("MONGODB_HOST", "localhost")
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def mongo_client(mongo_host):
     from pymongo import MongoClient
 
@@ -21,9 +21,9 @@ def mongo_client(mongo_host):
     return client
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def db(mongo_client):
-    mongo_client.drop_database('test')
+    mongo_client.drop_database("test")
     return mongo_client.test
 
 
@@ -33,12 +33,12 @@ def data(db):
     data.drop()
     data.insert_many(
         [
-            {'_id': '11', 'a': 1, 'b': 1},
-            {'_id': '22', 'a': 2, 'b': 2},
-            {'_id': '33', 'a': 3, 'b': 3},
-            {'_id': '14', 'a': 1, 'b': 4},
-            {'_id': '25', 'a': 2, 'b': 5},
-            {'_id': '36', 'a': 3, 'b': 6},
+            {"_id": "11", "a": 1, "b": 1},
+            {"_id": "22", "a": 2, "b": 2},
+            {"_id": "33", "a": 3, "b": 3},
+            {"_id": "14", "a": 1, "b": 4},
+            {"_id": "25", "a": 2, "b": 5},
+            {"_id": "36", "a": 3, "b": 6},
         ]
     )
     yield data
@@ -52,16 +52,16 @@ def clean(mongo_client, db):
 
 @pytest.fixture()
 def mnj_client(mongo_host):
-    import nj
+    import mnj
 
-    nj.create_client(db_name='test', host=mongo_host)
-    yield nj.get_client()
-    del nj.core.client._client_registry[nj.core.client._DEFAULT_CLIENT_NAME]
+    mnj.create_client(db_name="test", host=mongo_host)
+    yield mnj.get_client()
+    del mnj.core.client._client_registry[mnj.core.client._DEFAULT_CLIENT_NAME]
 
 
 @pytest.yield_fixture(autouse=True)
 def doc_registry():
-    from nj.core import registry
+    from mnj.core import registry
 
     registry.class_registry = registry.Registry()
     yield registry.class_registry

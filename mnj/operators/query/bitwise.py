@@ -5,10 +5,10 @@ import bson.binary
 from nj import operators
 
 
-__all__ = ['bits_all_set_', 'bits_any_set_', 'bits_all_clear_', 'bits_any_clear_']
+__all__ = ["bits_all_set_", "bits_any_set_", "bits_all_clear_", "bits_any_clear_"]
 
 bitmask_T = typing.TypeVar(
-    'bitmask_T', bson.binary.Binary, int, bytes, typing.Iterable[int]
+    "bitmask_T", bson.binary.Binary, int, bytes, typing.Iterable[int]
 )
 
 
@@ -19,7 +19,6 @@ class BitwiseOperator(operators.UnaryOperator):
     def prepare(  # type: ignore
         self, value: bitmask_T
     ) -> typing.Union[bson.binary.Binary, int, typing.Iterable[int]]:  # type: ignore
-
         if isinstance(value, (bson.binary.Binary, int)):
             return value
 

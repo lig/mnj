@@ -1,7 +1,7 @@
 from nj import operators
 
 
-__all__ = ['gt_', 'gte_', 'in_', 'lt_', 'lte_', 'ne_', 'nin_']
+__all__ = ["gt_", "gte_", "in_", "lt_", "lte_", "ne_", "nin_"]
 
 
 class gt_(operators.UnaryOperator):

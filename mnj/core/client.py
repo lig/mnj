@@ -6,7 +6,7 @@ import pymongo
 from . import exceptions, registry
 
 
-_DEFAULT_CLIENT_NAME = 'default'
+_DEFAULT_CLIENT_NAME = "default"
 
 
 @attr.s(auto_attribs=True, kw_only=True)

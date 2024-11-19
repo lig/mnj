@@ -37,4 +37,4 @@ python setup.py install
 * Using `nj.q` object for constructing queries will help to validate them.
 * No creepy `'$op'` strings any more use `op_()` style operators.
 
-Read the [Mnj Docs](http://mnj.readthedocs.io/) to find out more. 
+Read the [Mnj Docs](http://mnj.readthedocs.io/) to find out more.

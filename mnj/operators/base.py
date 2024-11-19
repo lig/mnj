@@ -9,12 +9,12 @@ class OperatorMeta(type):
         name: str,
         bases: typing.Tuple[typing.Type],
         attrs: typing.Dict[str, typing.Any],
-    ) -> 'OperatorMeta':
-        name_chunks = name.rstrip('_').split('_')
-        attrs['Sname'] = (
-            '$'
+    ) -> "OperatorMeta":
+        name_chunks = name.rstrip("_").split("_")
+        attrs["Sname"] = (
+            "$"
             + name_chunks[0]
-            + ''.join(chunk.capitalize() for chunk in name_chunks[1:])
+            + "".join(chunk.capitalize() for chunk in name_chunks[1:])
         )
         return typing.cast(OperatorMeta, super().__new__(cls, name, bases, attrs))
 

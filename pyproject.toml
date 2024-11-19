@@ -1,3 +1,41 @@
+[project]
+name = "mnj"
+version = "1.0.0-alpha-3"
+description = "Mnj (Mongo Energy) is a helper library to simplify PyMongo interaction"
+readme = "README.md"
+license = { file = "COPYING" }
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Database :: Front-Ends",
+    "Typing :: Typed",
+]
+authors = [{ name = "Serge Matveenko", email = "lig@countzero.co" }]
+requires-python = ">=3.13"
+dependencies = [
+    "attrs>=24.2.0",
+    "pymongo>=4.10.1",
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.13.0",
+    "pyright>=1.1.389",
+    "pytest>=8.3.3",
+    "pyupgrade>=3.19.0",
+    "ruff>=0.7.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/lig/mnj"
+Documentation = "https://mnj.readthedocs.io/"
+Repository = "https://github.com/lig/mnj"
+"Bug Tracker" = "https://github.com/lig/mnj/issues"
+Changelog = "https://github.com/lig/mnj/releases"
+
 [tool.black]
-target-version = ["py36", "py37", "py38"]
 skip-string-normalization = true

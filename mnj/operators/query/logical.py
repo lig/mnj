@@ -1,7 +1,7 @@
 from nj import core, operators
 
 
-__all__ = ['and_', 'nor_', 'not_', 'or_']
+__all__ = ["and_", "nor_", "not_", "or_"]
 
 
 class and_(operators.ArgsOperator):

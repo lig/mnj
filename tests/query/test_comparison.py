@@ -1,36 +1,36 @@
-import nj
+import mnj
 
 
 def test_gt():
-    query = nj.q(a=nj.gt_(1))
-    assert query == {'a': {'$gt': 1}}
+    query = mnj.q(a=mnj.gt_(1))
+    assert query == {"a": {"$gt": 1}}
 
 
 def test_gte():
-    query = nj.q(a=nj.gte_(1))
-    assert query == {'a': {'$gte': 1}}
+    query = mnj.q(a=mnj.gte_(1))
+    assert query == {"a": {"$gte": 1}}
 
 
 def test_in():
-    query = nj.q(a=nj.in_(1, 2, 3))
-    assert query == {'a': {'$in': (1, 2, 3)}}
+    query = mnj.q(a=mnj.in_(1, 2, 3))
+    assert query == {"a": {"$in": (1, 2, 3)}}
 
 
 def test_lt():
-    query = nj.q(a=nj.lt_(1))
-    assert query == {'a': {'$lt': 1}}
+    query = mnj.q(a=mnj.lt_(1))
+    assert query == {"a": {"$lt": 1}}
 
 
 def test_lte():
-    query = nj.q(a=nj.lte_(1))
-    assert query == {'a': {'$lte': 1}}
+    query = mnj.q(a=mnj.lte_(1))
+    assert query == {"a": {"$lte": 1}}
 
 
 def test_ne():
-    query = nj.q(a=nj.ne_(1))
-    assert query == {'a': {'$ne': 1}}
+    query = mnj.q(a=mnj.ne_(1))
+    assert query == {"a": {"$ne": 1}}
 
 
 def test_nin():
-    query = nj.q(a=nj.nin_(1, 2, 3))
-    assert query == {'a': {'$nin': (1, 2, 3)}}
+    query = mnj.q(a=mnj.nin_(1, 2, 3))
+    assert query == {"a": {"$nin": (1, 2, 3)}}

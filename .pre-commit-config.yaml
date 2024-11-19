@@ -1,25 +1,41 @@
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
   - repo: local
     hooks:
-      - id: isort
-        name: isort
-        entry: pipenv run isort
+      - id: pyupgrade
+        name: pyupgrade
+        entry: uv run pyupgrade
         language: system
         types: [python]
-      - id: mypy
+      - id: format
+        name: ruff format
+        entry: uv run ruff format
+        language: system
+        types: [python]
+      - id: check
+        name: ruff check
+        entry: uv run ruff check --fix
+        language: system
+        types: [python]
+      - id: typing mypy
         name: mypy
-        entry: pipenv run mypy
+        entry: uv run mypy
         language: system
         types: [python]
-        exclude: >
-          (?x)^(
-            tests/
-          )
-  - repo: https://github.com/ambv/black
-    rev: 19.3b0
-    hooks:
-      - id: black
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.1.0
-    hooks:
-      - id: flake8
+      - id: typing pyright
+        name: pyright
+        entry: uv run pyright --warnings
+        language: system
+        types: [python]
+      - id: uv-lock-check
+        name: uv-lock-check
+        entry: uv lock --locked
+        language: system
+        pass_filenames: false
+        files: "pyproject.toml"

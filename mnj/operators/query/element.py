@@ -3,7 +3,7 @@ import typing
 from nj import core, operators
 
 
-__all__ = ['exists_', 'type_']
+__all__ = ["exists_", "type_"]
 
 
 class exists_(operators.UnaryOperator):
@@ -15,7 +15,6 @@ class type_(operators.UnaryOperator):
     def prepare(  # type: ignore
         self, value: typing.Union[core.BSONType, int, str]
     ) -> core.BSONType:  # type: ignore
-
         if isinstance(value, int):
             value = core.BSONType(value)
         elif isinstance(value, str):

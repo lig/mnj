@@ -15,7 +15,7 @@ Mnj consits of the three main layers:
 
 * Python based DSL on top of the `PyMongo <https://api.mongodb.com/python/current/>`_-like syntax.
 * Custom DSL operators implementing additional features which cover MongoDB best practices.
-* ODM (Object Document Mapping) framework that defines document schema and provides a high level abstraction for the Mnj features. 
+* ODM (Object Document Mapping) framework that defines document schema and provides a high level abstraction for the Mnj features.
 
 Mnj is licensed under :doc:`copying`.
 

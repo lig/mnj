@@ -22,22 +22,22 @@ class DocumentType(abc.ABCMeta):
         name: str,
         bases: typing.Tuple[type, ...],
         namespace: typing.Dict[str, typing.Any],
-    ) -> 'DocumentType':
+    ) -> "DocumentType":
         return typing.cast(
-            'DocumentType',
+            "DocumentType",
             attr.s(auto_attribs=True, kw_only=True)(
                 super().__new__(cls, name, bases, namespace)
             ),
         )
 
-    def __call__(cls, **kwargs: typing.Any) -> 'Document':  # type: ignore
-        if '_id' in kwargs:
-            kwargs['id'] = kwargs.pop('_id')
+    def __call__(cls, **kwargs: typing.Any) -> "Document":  # type: ignore
+        if "_id" in kwargs:
+            kwargs["id"] = kwargs.pop("_id")
         return super().__call__(**kwargs)
 
     @property
     def _col(  # type: ignore
-        cls: typing.Type['Document']
+        cls: typing.Type["Document"],
     ) -> pymongo.collection.Collection:  # type: ignore
         return client.get_db(client_name=cls._meta.client_name)[
             cls._meta.collection_name
@@ -53,16 +53,16 @@ class Document(collections.abc.MutableMapping, metaclass=DocumentType):
         super().__init_subclass__(**kwargs)
 
         _metadata = {
-            'collection_name': cls.__name__[:1].lower() + cls.__name__[1:],
-            'query_class': query.Query,
+            "collection_name": cls.__name__[:1].lower() + cls.__name__[1:],
+            "query_class": query.Query,
         }
 
-        if hasattr(cls, '_meta'):
+        if hasattr(cls, "_meta"):
             _metadata.update(attr.asdict(cls._meta))
 
-        if hasattr(cls, 'Meta'):
+        if hasattr(cls, "Meta"):
             _metadata.update(
-                (k, v) for k, v in vars(cls.Meta).items() if not k.startswith('_')
+                (k, v) for k, v in vars(cls.Meta).items() if not k.startswith("_")
             )
             del cls.Meta
 

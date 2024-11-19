@@ -5,7 +5,6 @@ import bson.json_util
 
 class MongoObject(dict):
     def __init__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-
         if len(args) > 1:
             q = self.__class__()
             for arg in args:
@@ -19,7 +18,7 @@ class MongoObject(dict):
 
 
 MongoObject_T = typing.TypeVar(
-    'MongoObject_T',
+    "MongoObject_T",
     MongoObject,
     typing.Mapping[str, typing.Any],
     typing.Iterable[typing.Tuple[str, typing.Any]],

@@ -4,4 +4,4 @@ from .query import Q
 from .types import BSONType
 
 
-__all__ = ['BaseMnjError', 'BSONType', 'MongoObject', 'MongoObject_T', 'Q']
+__all__ = ["BaseMnjError", "BSONType", "MongoObject", "MongoObject_T", "Q"]

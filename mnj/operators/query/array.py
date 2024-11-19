@@ -3,7 +3,7 @@ import typing
 from nj import core, operators
 
 
-__all__ = ['all_', 'elem_match_', 'size_']
+__all__ = ["all_", "elem_match_", "size_"]
 
 
 class all_(operators.Operator):
@@ -24,7 +24,6 @@ class size_(operators.UnaryOperator):
         super().__init__(size)
 
     def prepare(self, value: int) -> int:  # type: ignore
-
         if not isinstance(value, int):
             raise operators.MnjOperatorError("`size` must be integer")
 
